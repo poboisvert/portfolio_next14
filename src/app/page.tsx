@@ -1,21 +1,22 @@
 import React from "react";
 import ItemSoftware from "@/components/item-software";
-import ItemTimeline from "@/components/item-timeline";
 import NextLink from "@/components/common/nextlink";
 import SvgIcon from "@/components/common/svg-icon";
 import ContactForm from "@/components/common/contactForm";
 import PageWrapper from "@/components/layout";
-import { timelineData } from "@/lib/content";
 import { profile, tags } from "@/lib/content";
 import Carousel from "@/components/carousel";
 import { getGithubProject } from "@/lib/fetch";
 import { ThemeProvider } from "@/components/context/ThemeContext";
 import Modals from "@/components/web/modals";
 
+import TimelinePage from "./@timeline/page";
+
 const HomePage = async () => {
   const sectionClassName = "flex flex-col px-4 sm:px-8";
   const skillIconClassName = "inline-block w-12 h-12 sm:w-16 sm:h-16";
   const slides = await getGithubProject();
+
   return (
     <ThemeProvider>
       <script
@@ -82,6 +83,37 @@ const HomePage = async () => {
             title='Latest GitHub Projects'
           />
         </section>
+        <section>
+          <Carousel
+            slides={[
+              {
+                name: "BettingNews >",
+                html_url: "/work/bettingnews",
+                homepage:
+                  "https://static-cdn.jtvnw.net/jtv_user_pictures/0bbefa70-bc6c-4762-b5aa-73ef28b6c5df-profile_banner-480.png",
+                owner: { login: "poboisvert" },
+                topics: ["python", "next.js", "redis", "nosqldb"],
+              },
+              {
+                name: "Condollo >",
+                html_url: "/work/condollo",
+                homepage:
+                  "https://i.ibb.co/JsJqjMG/Screenshot-2024-06-19-at-7-48-09-AM.png",
+                owner: { login: "poboisvert" },
+                topics: ["next.js", "python", "go", "supabase", "rpc"],
+              },
+            ]}
+            title='Real World Projects'
+          />
+        </section>
+
+        <section className={sectionClassName} aria-labelledby='timeline'>
+          <h2 id='timeline'>Timeline</h2>
+          <ul>
+            <TimelinePage />
+          </ul>
+        </section>
+
         <section className={sectionClassName} aria-labelledby='tech-skills'>
           <h2 id='tech-skills'>Tech Skills</h2>
           <p>
@@ -211,21 +243,7 @@ const HomePage = async () => {
             />
           </ul>
         </section>
-        <section className={sectionClassName} aria-labelledby='timeline'>
-          <h2 id='timeline'>Timeline</h2>
-          <ul>
-            {timelineData.map((item) => (
-              <ItemTimeline
-                key={item.date}
-                type={item.type}
-                date={item.date}
-                title={item.title}
-              >
-                <p>{item.description}</p>
-              </ItemTimeline>
-            ))}
-          </ul>
-        </section>
+
         <section className={sectionClassName} aria-labelledby='contact'>
           <h2 id='contact'>Contact</h2>
           <p>
@@ -236,29 +254,7 @@ const HomePage = async () => {
             or explore my online presence through the links provided below.
           </p>
         </section>
-        <section>
-          <Carousel
-            slides={[
-              {
-                name: "BettingNews",
-                html_url: "https://www.bettingnews.com/",
-                homepage:
-                  "https://static-cdn.jtvnw.net/jtv_user_pictures/0bbefa70-bc6c-4762-b5aa-73ef28b6c5df-profile_banner-480.png",
-                owner: { login: "poboisvert" },
-                topics: ["python", "next.js", "redis", "nosqldb"],
-              },
-              {
-                name: "Condollo",
-                html_url: "https://condollo.com",
-                homepage:
-                  "https://i.ibb.co/JsJqjMG/Screenshot-2024-06-19-at-7-48-09-AM.png",
-                owner: { login: "poboisvert" },
-                topics: ["next.js", "python", "go", "supabase", "rpc"],
-              },
-            ]}
-            title='Real World Projects'
-          />
-        </section>
+
         <ContactForm />
       </PageWrapper>
     </ThemeProvider>
