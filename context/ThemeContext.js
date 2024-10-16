@@ -20,6 +20,12 @@ export function ThemeProvider({ children }) {
     setTheme(theme);
   }, [theme]);
 
+  useEffect(() => {
+    if (!document.documentElement.className) {
+      document.documentElement.className = "dark";
+    }
+  }, []);
+
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
