@@ -2,7 +2,7 @@ import React from "react";
 import NextLink from "@/components/common/nextlink";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import { ThemeProvider } from "@/components/context/ThemeContext";
+import { ThemeProvider } from "@/context/ThemeContext";
 import { profile } from "@/lib/content";
 import { getProfileGitHub } from "@/lib/fetch";
 import SpotifyModal from "./spotify";

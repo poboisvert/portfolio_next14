@@ -7,7 +7,7 @@ import PageWrapper from "@/components/layout";
 import { profile, tags } from "@/lib/content";
 import Carousel from "@/components/carousel";
 import { getGithubProject } from "@/lib/fetch";
-import { ThemeProvider } from "@/components/context/ThemeContext";
+import { ThemeProvider } from "@/context/ThemeContext";
 import Modals from "@/components/web/modals";
 
 import TimelinePage from "./@timeline/page";
