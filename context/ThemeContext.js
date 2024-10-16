@@ -14,17 +14,15 @@ export function ThemeProvider({ children }) {
   useEffect(() => {
     // Script to useState component toggle
     global.window.__onThemeChange = setTheme;
+
+    if (!document.documentElement.className) {
+      document.documentElement.className = "dark";
+    }
   }, []);
 
   useEffect(() => {
     setTheme(theme);
   }, [theme]);
-
-  useEffect(() => {
-    if (!document.documentElement.className) {
-      document.documentElement.className = "dark";
-    }
-  }, []);
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
